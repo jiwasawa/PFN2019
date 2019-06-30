@@ -38,7 +38,7 @@ train_acc_array = np.zeros(num_epoch)  # training accuracy
 val_loss_array = np.zeros(num_epoch)   # validation loss
 val_acc_array = np.zeros(num_epoch)    # validation accuracy
 
-for t,epoch in enumerate(range(num_epoch)):
+for epoch in range(num_epoch):
     bag = np.linspace(0,Train_size-1,Train_size,dtype=int)
     loss_epoch = np.zeros(num_mini_batch) # storage for mean loss for each epoch
     pred_epoch = np.zeros((Train_size,2)) # storage for [y_true, y_pred]
@@ -73,12 +73,12 @@ for t,epoch in enumerate(range(num_epoch)):
         m_b = beta1*m_b + (1-beta1)*g_b
         s_b = beta2*s_b + (1-beta2)*np.power(g_b,2)
         
-        m_hat_W = m_W/(1-beta1**t)
-        s_hat_W = s_W/(1-beta2**t)
-        m_hat_A = m_A/(1-beta1**t)
-        s_hat_A = s_A/(1-beta2**t)
-        m_hat_b = m_b/(1-beta1**t)
-        s_hat_b = s_b/(1-beta2**t)
+        m_hat_W = m_W/(1-beta1)
+        s_hat_W = s_W/(1-beta2)
+        m_hat_A = m_A/(1-beta1)
+        s_hat_A = s_A/(1-beta2)
+        m_hat_b = m_b/(1-beta1)
+        s_hat_b = s_b/(1-beta2)
         
         W = W - alpha*m_hat_W/(np.sqrt(s_hat_W)+epsilon2)
         A = A - alpha*m_hat_A/(np.sqrt(s_hat_A)+epsilon2)
